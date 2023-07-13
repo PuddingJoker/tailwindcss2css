@@ -4176,6 +4176,10 @@ const CheatSheet = [
                         "margin-left:auto;\nmargin-right:auto;"
                     ],
                     [
+                        "my-auto",
+                        "margin-top:auto;\nmargin-bottom:auto;"
+                    ],
+                    [
                         "m-0.5",
                         "margin: 0.125rem;",
                         "2px"
