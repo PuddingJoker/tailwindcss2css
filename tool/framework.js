@@ -13,7 +13,6 @@ const JsxConvert = (path = "", way) => {
                 css += `.tailwindToCss${count}{
                     ${tailwindToCss(b)}
                 }`
-                console.log(111, css);
                 const classes = `className={\`$\{styles.tailwindToCss${count}\} ${Array.from(originClasses).join(' ')}\`}`
                 count++
                 return classes
@@ -49,7 +48,7 @@ const JsxConvert = (path = "", way) => {
         if (way === "native") {
             // generate .css file
             let generatePath = path.split("/");
-            const fileName = generatePath.pop()
+            const fileName = generatePath.pop().split(".")[0]
             generatePath = `${generatePath.join("/")}/${fileName}.module.css`
             fs.writeFileSync(generatePath, css, "utf8");
 
