@@ -1,5 +1,5 @@
 const fs = require("fs");
-const tailwindToCss = require("./index");
+const { tailwindToCss, originClasses } = require("./index");
 
 const importReg = /(import[^]*?\r?\n[\r\n]+)(?!import\b)/
 
@@ -10,15 +10,19 @@ const JsxConvert = (path = "", way) => {
         let content = fs.readFileSync(path, "utf8");
         content = content.replace(/className="(.*?)"/g, (_, b) => {
             if (way === "native") {
-                css += tailwindToCss(b)
-                return 'className=""'
+                css += `.tailwindToCss${count}{
+                    ${tailwindToCss(b)}
+                }`
+                const classes = `className={\`$\{styles.tailwindToCss${count}\} ${Array.from(originClasses).join(' ')}\`}`
+                count++
+                return classes
             }
 
             if (way === "cssinjs") {
                 css += `
                     const div${count} = css\`\n${tailwindToCss(b)} \`
                 `
-                const classes = `className={div${count}}`
+                const classes = `className={\`$\{div${count}\} ${Array.from(originClasses).join(' ')}\`}`
                 count++
                 return classes
             }
@@ -30,7 +34,9 @@ const JsxConvert = (path = "", way) => {
                 style = `style={{${style}}}`
                     .replace(/(\w+):\s*([^;]+)/g, '$1: "$2"')
                     .replace(/;/g, ",");
-                return style;
+
+                const classes = originClasses.size ? `className="${Array.from(originClasses).join(' ')}"` : ""
+                return style + classes;
             }
         });
 
@@ -40,15 +46,18 @@ const JsxConvert = (path = "", way) => {
             console.log(path, "     change to inline style success!");
         }
         if (way === "native") {
-            content = `
-                    .class{
-                        ${css}
-                    }
-            `
+            // generate .css file
             let generatePath = path.split("/");
             generatePath.pop()
-            generatePath = `${generatePath.join("/")}/index.module.css`
+            generatePath = `${generatePath.join("/")}/${generatePath[generatePath.length - 1]}.module.css`
             fs.writeFileSync(generatePath, content, "utf8");
+
+            // write origin file
+            const codeToInsert = `
+                import styles from "./${generatePath[generatePath.length - 1]}.module.css";
+            `
+            content = content.replace(importReg, `$1${codeToInsert}`);
+            fs.writeFileSync(path, content, "utf8");
             console.log(generatePath, "    generate style file success!");
         }
 

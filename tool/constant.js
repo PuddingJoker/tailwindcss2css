@@ -40,11 +40,12 @@ const specialReg = {
     "^text-\\[((\\d+(\\.\\d+)?)(px|rem|em))\\]$": "font-size:{{var}};\n",
 };
 
-const nativeClassHelper = ["hover:","sm:","md:","lg:","xl:","2xl:"]
+const originClassHelper = ["hover", "sm", "md", "lg", "xl", "2xl"]
 
 
 module.exports = {
     tailwindClass,
     specialClass,
-    specialReg
+    specialReg,
+    originClassHelper
 }

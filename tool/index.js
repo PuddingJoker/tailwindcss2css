@@ -1,7 +1,7 @@
 const tailwindMap = require("./tailwindMap");
-const { tailwindClass, specialClass, specialReg, nativeClassHelper } = require("./constant")
+const { tailwindClass, specialClass, specialReg, originClassHelper } = require("./constant")
 
-let nativeClasses = []
+let originClasses = new Set()
 
 const convertToCss = classNames => {
     let cssCode = ``;
@@ -10,11 +10,13 @@ const convertToCss = classNames => {
             content.table.forEach(list => {
                 if (classNames?.includes(list[0])) {
                     cssCode += `${list[1]} \n`;
+                    originClasses.delete(list[0]);
                 }
 
                 if (classNames?.includes(list[1])) {
                     const semicolon = list[2][list[2].length - 1] !== ";" ? ";" : "";
                     cssCode += `${list[2]}${semicolon} \n`;
+                    originClasses.delete(list[1]);
                 }
             });
         });
@@ -31,6 +33,7 @@ const convertToCss = classNames => {
             const inputVal = className?.match(/(?<=\[)[^\][]*(?=])/g)[0];
             // special class
             if (specialClass[inputClass]) {
+                originClasses.delete(className);
                 if (!combineCss[inputClass]) {
                     combineCss[inputClass] = inputVal;
                 } else {
@@ -42,6 +45,7 @@ const convertToCss = classNames => {
             // special reg
             for (let key in specialReg) {
                 if (new RegExp(key).test(className)) {
+                    originClasses.delete(className);
                     const css = specialReg[key].replace(/{{(.*?)}}/g, () => {
                         return inputVal;
                     });
@@ -52,6 +56,7 @@ const convertToCss = classNames => {
 
             // common tailwindcss
             if (tailwindClass[inputClass]) {
+                originClasses.delete(className);
                 cssCode += `${tailwindClass[inputClass]}: ${inputVal};\n`;
                 return;
             }
@@ -108,7 +113,17 @@ const tailwindToCss = input => {
     const xlClasses = getBreakPoints(input, "xl");
     const _2xlClasses = getBreakPoints(input, "2xl");
 
+    originClasses.size !== 0 && originClasses.clear()
+    classNames.filter(i => {
+        let left = ""
+        if (i.includes(":")) {
+            left = i.split(":")[0]
+        }
 
+        if (!left && !originClassHelper.includes(left)) {
+            originClasses.add(i)
+        }
+    })
 
     let resultCss = `${convertToCss(classNames)}
     ${smClasses && smClasses.length
@@ -141,4 +156,8 @@ const tailwindToCss = input => {
 };
 
 
-module.exports = tailwindToCss;
+
+module.exports = {
+    tailwindToCss,
+    originClasses
+};
