@@ -83,8 +83,12 @@ const VueConvert = (path = "", way) => {
         let content = fs.readFileSync(path, "utf8");
         content = content.replace(/class="(.*?)"/g, (_, b) => {
             if (way === "native") {
-                css += tailwindToCss(b)
-                return 'class=""'
+                css += `.tailwindToCss${count}{
+                    ${tailwindToCss(b)}
+                }`
+                const classes = `class="tailwindToCss${count} ${Array.from(originClasses).join(' ')}"`
+                count++
+                return classes
             }
 
             if (way === "cssinjs") {
@@ -97,7 +101,8 @@ const VueConvert = (path = "", way) => {
             }
 
             if (way === "inline") {
-                return `style="${tailwindToCss(b)}"`
+                const classes = originClasses.size ? `class="${Array.from(originClasses).join(' ')}"` : ""
+                return `style="${tailwindToCss(b)}"` + classes
             }
         });
 
@@ -107,16 +112,14 @@ const VueConvert = (path = "", way) => {
             console.log(path, "     change to inline style success!");
         }
         if (way === "native") {
-            content = `
-                    .class{
-                        ${css}
-                    }
+            const codeToInsert = `
+            <style scoped>
+                ${css}
+            </style>
             `
-            let generatePath = path.split("/");
-            generatePath.pop()
-            generatePath = `${generatePath.join("/")}/index.module.css`
-            fs.writeFileSync(generatePath, content, "utf8");
-            console.log(generatePath, "    generate style file success!");
+            content = content + codeToInsert
+            fs.writeFileSync(path, content, "utf8");
+            console.log(path, "    generate style codes success!");
         }
 
         if (way === 'cssinjs') {
