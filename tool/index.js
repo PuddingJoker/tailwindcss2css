@@ -1,5 +1,7 @@
 const tailwindMap = require("./tailwindMap");
-const { tailwindClass, specialClass, specialReg } = require("./constant")
+const { tailwindClass, specialClass, specialReg, nativeClassHelper } = require("./constant")
+
+let nativeClasses = []
 
 const convertToCss = classNames => {
     let cssCode = ``;
@@ -27,7 +29,6 @@ const convertToCss = classNames => {
         try {
             const inputClass = className?.split("-[")[0].replace(".", "");
             const inputVal = className?.match(/(?<=\[)[^\][]*(?=])/g)[0];
-
             // special class
             if (specialClass[inputClass]) {
                 if (!combineCss[inputClass]) {
@@ -55,8 +56,6 @@ const convertToCss = classNames => {
                 return;
             }
 
-            // origin class
-
         } catch (e) {
             console.log(e);
         }
@@ -82,7 +81,8 @@ const getBreakPoints = (input, breakpoint) => {
         .map(i => i.substring(3));
 };
 
-const getHoverClass = input => {
+const getHoverClass = (input, classes) => {
+    classes = classes.filter(i => i.startsWith("hover:"))
     return input
         .replace(wrapReg, " ")
         .split(" ")
@@ -99,13 +99,16 @@ const tailwindToCss = input => {
         .filter(i => i !== "");
     const breakpoints = tailwindMap[0].content[1].table;
 
-    const hoverClasses = getHoverClass(input);
+    const hoverClasses = getHoverClass(input, classNames);
+
 
     const smClasses = getBreakPoints(input, "sm");
     const mdClasses = getBreakPoints(input, "md");
     const lgClasses = getBreakPoints(input, "lg");
     const xlClasses = getBreakPoints(input, "xl");
     const _2xlClasses = getBreakPoints(input, "2xl");
+
+
 
     let resultCss = `${convertToCss(classNames)}
     ${smClasses && smClasses.length
