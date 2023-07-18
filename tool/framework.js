@@ -9,7 +9,7 @@ const JsxConvert = (path = "", way) => {
     try {
         let content = fs.readFileSync(path, "utf8");
         content = content.replace(/className="(.*?)"/g, (_, b) => {
-            if (way === "pure") {
+            if (way === "native") {
                 css += tailwindToCss(b)
                 return 'className=""'
             }
@@ -39,7 +39,7 @@ const JsxConvert = (path = "", way) => {
             fs.writeFileSync(path, content, "utf8");
             console.log(path, "     change to inline style success!");
         }
-        if (way === "pure") {
+        if (way === "native") {
             content = `
                     .class{
                         ${css}
@@ -73,7 +73,7 @@ const VueConvert = (path = "", way) => {
     try {
         let content = fs.readFileSync(path, "utf8");
         content = content.replace(/class="(.*?)"/g, (_, b) => {
-            if (way === "pure") {
+            if (way === "native") {
                 css += tailwindToCss(b)
                 return 'class=""'
             }
@@ -97,7 +97,7 @@ const VueConvert = (path = "", way) => {
             fs.writeFileSync(path, content, "utf8");
             console.log(path, "     change to inline style success!");
         }
-        if (way === "pure") {
+        if (way === "native") {
             content = `
                     .class{
                         ${css}
@@ -129,11 +129,11 @@ const VueConvert = (path = "", way) => {
 /**
  *
  * @param {*} dir   entry,must be a absolute path
- * @param {*} isVueOrReact  project framework:  "vue"  "react" 
- * @param {*} way  compile way: "inline"  "pure"  "cssinjs"
+ * @param {*} VueOrJsx  project framework:  "vue"  "jsx" 
+ * @param {*} way  compile way: "inline"  "native"  "cssinjs"
  */
 
-const run = (dir, VueOrReact = "react", way = "inline") => {
+const run = (dir, VueOrJsx = "jsx", way = "inline") => {
     try {
         const files = fs.readdirSync(dir);
         files.map(file => {
@@ -141,11 +141,11 @@ const run = (dir, VueOrReact = "react", way = "inline") => {
             // 判断是否为文件夹
             const stat = fs.lstatSync(filePath);
             if (stat.isDirectory()) {
-                return run(filePath, VueOrReact, way);
+                return run(filePath, VueOrJsx, way);
             }
             const fullPath = `${dir}/${file}`;
-            if (VueOrReact === "react") JsxConvert(fullPath, way);
-            if (VueOrReact === "vue") VueConvert(fullPath, way);
+            if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
+            if (VueOrJsx === "vue") VueConvert(fullPath, way);
         });
     } catch (error) {
         console.log(error);

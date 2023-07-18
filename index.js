@@ -1,21 +1,21 @@
 const tailwindToCss = require("./tool");
 
-const pure = tailwindToCss(`w-[1180px] px-[15px] hover:text-[red] text-[18px] text-[0.3rem] 
+const native = tailwindToCss(`w-[1180px] px-[15px] hover:text-[red] text-[18px] text-[0.3rem] 
 text-[#808082] mx-auto py-[10px] mx-[10px] my-[20px] 
 border-[1px] border-[black]  flex items-center justify-between h-[64px] md:mx-auto`)
 
-// console.log(pure);
+// console.log(native);
 
 
 
 const run = require("./tool/framework")
 /**
  *
- * @param {*} dir   entry,must be a absolute path
- * @param {*} isVueOrReact  project framework:  "vue"  "react"  " "
- * @param {*} way  compile way: "inline"  "pure"  "cssinjs" " "   cssinjs only support linaria
+ * @param {*} dir   entry, must be a absolute path
+ * @param {*} VueOrJsx  project framework:  "vue"  "jsx", default "jsx"
+ * @param {*} way  compile way: "inline"  "native"  "cssinjs" (only support linaria), default "inline"
  */
 
-run("/Users/pudding/Desktop/tailwind2css/src", "react", "inline");
+run("/Users/pudding/Desktop/tailwind2css/src", "jsx", "inline");
 
 
