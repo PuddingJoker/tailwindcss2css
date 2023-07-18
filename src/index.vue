@@ -1,5 +1,5 @@
 <template >
-  <div class="w-full h-full flex justify-center items-center bg">
+  <div :class="`w-full h-full flex justify-center items-center bg`">
     <div class="p-[20px] w-[44rem] text-center">
       <h4 class="mb-[20px]">套餐购买</h4>
       <div
