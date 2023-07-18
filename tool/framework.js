@@ -48,7 +48,7 @@ const JsxConvert = (path = "", way) => {
         if (way === "native") {
             // generate .css file
             let generatePath = path.split("/");
-            const fileName = generatePath.pop().split(".")[0]
+            const fileName = generatePath.pop().split(".")[0].toLowerCase()
             generatePath = `${generatePath.join("/")}/${fileName}.module.css`
             fs.writeFileSync(generatePath, css, "utf8");
 
