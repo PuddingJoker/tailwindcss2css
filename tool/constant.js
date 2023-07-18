@@ -25,6 +25,7 @@ const tailwindClass = {
     "max-h": "max-height",
     leading: "line-height",
     rounded: "border-radius",
+    opacity: "opacity",
 };
 
 const specialClass = {
