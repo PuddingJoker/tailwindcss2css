@@ -10,14 +10,6 @@ const JsxConvert = (path = "", way) => {
         let content = fs.readFileSync(path, "utf8");
         content = content.replace(/className="(.*?)"/g, (_, b) => {
             if (way === "native") {
-                const hasBackTick = b.includes('`')
-                if (hasBackTick) {
-                    console.warn(`——————————————————————————————————————————\n
-                    compile fail while className got backtick:\n${b}\n
-                                    ——————————————————————————————————————————`);
-                    return _
-                }
-
                 css += `.tailwindToCss${count}{
                     ${tailwindToCss(b)}
                 }`
