@@ -51,7 +51,7 @@ const JsxConvert = (path = "", way) => {
             let generatePath = path.split("/");
             const fileName = generatePath.pop()
             generatePath = `${generatePath.join("/")}/${fileName}.module.css`
-            fs.writeFileSync(generatePath, content, "utf8");
+            fs.writeFileSync(generatePath, css, "utf8");
 
             // write origin file
             const codeToInsert = `
@@ -153,6 +153,10 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
             if (stat.isDirectory()) {
                 return run(filePath, VueOrJsx, way);
             }
+            // filter 
+            const ends = ["vue", "jsx", "tsx"]
+            if (!ends.includes(file.split(".")[1])) return
+
             const fullPath = `${dir}/${file}`;
             if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
             if (VueOrJsx === "vue") VueConvert(fullPath, way);
