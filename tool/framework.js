@@ -192,8 +192,8 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
       if (!ends.includes(file.split(".")[1])) return;
 
       const fullPath = `${dir}/${file}`;
-      // if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
-      // if (VueOrJsx === "vue") VueConvert(fullPath, way);
+      if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
+      if (VueOrJsx === "vue") VueConvert(fullPath, way);
     });
 
     exec(`prettier --write '${dir}/**/*.{tsx,css,ts}'`, (error, stdout, stderr) => {
