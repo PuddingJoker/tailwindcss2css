@@ -16,6 +16,6 @@ const run = require("./tool/framework")
  * @param {*} way  compile way: "inline"  "native"  "cssinjs" (only support linaria), default "inline"
  */
 
-run("/Users/pudding/前端总学习/tailwind2css/src", "vue", "native");
+run("/Users/pudding/前端总学习/tailwind2css/src", "vue", "inline");
 
 

@@ -114,10 +114,19 @@ const VueConvert = (path = "", way) => {
       }
 
       if (way === "inline") {
+        const hasBackTick = b.includes("`");
+        if (hasBackTick) {
+          console.warn(`——————————————————————————————————————————compile fail while class got backtick:\n${b}\n
+                                    ——————————————————————————————————————————`);
+          return _;
+        }
+
+        const styles = `style="${tailwindToCss(b)}"`
+
         const classes = originClasses.size
           ? `class="${Array.from(originClasses).join(" ")}"`
           : "";
-        return `style="${tailwindToCss(b)}"` + classes;
+        return styles + classes;
       }
     });
 
