@@ -203,7 +203,7 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
         return;
       }
 
-      console.log(`format file success! ${stdout}`);
+      console.log(`format file success!\n ${stdout}`);
       stderr && console.error(`format file fail: ${stderr}`);
     });
 
