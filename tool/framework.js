@@ -198,8 +198,8 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
 
 
       exec(`prettier --write ${fullPath}`, (error, stdout, stderr) => {
-        console.log(`\n~~~~~~~~~~~~~~~~  remember to run "npm install -g prettier" first ~~~~~~~~~~~~~~~~\n `);
         if (error) {
+          console.log(`\n~~~~~~~~~~~~~~~~  remember to run "npm install -g prettier" first ~~~~~~~~~~~~~~~~\n `);
           console.error(`${fullPath}格式化文档出错：${error}`);
           return;
         }
