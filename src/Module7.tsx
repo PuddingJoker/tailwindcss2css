@@ -6,7 +6,7 @@ import floor7Pic from "./assets/images/zkt/floor7Pic.png"
 
 
 const ZktHeader = () => {
-    return <div className="min-w-[1180px] relative h-[726px]">
+    return <div className={`min-w-[1180px] relative h-[726px]`}>
         {/* <Background src={floor4}></Background> */}
         <div className="w-[1180px] mx-auto relative pt-[80px]">
             <div className="text-center tex-[#17181B] text-[26px] leading-[26px]">私域阵地经营</div>
