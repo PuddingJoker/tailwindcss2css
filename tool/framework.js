@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { exec } = require('child_process');
 const { tailwindToCss, originClasses } = require("./index");
 
 const importReg = /(import[^]*?\r?\n[\r\n]+)(?!import\b)/;
@@ -193,6 +194,19 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
       const fullPath = `${dir}/${file}`;
       if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
       if (VueOrJsx === "vue") VueConvert(fullPath, way);
+
+
+
+      exec(`prettier --write ${fullPath}`, (error, stdout, stderr) => {
+        console.log(`\n~~~~~~~~~~~~~~~~  remember to run "npm install -g prettier" first ~~~~~~~~~~~~~~~~\n `);
+        if (error) {
+          console.error(`${fullPath}格式化文档出错：${error}`);
+          return;
+        }
+
+        console.log(`${fullPath}格式化文档成功！：${stdout}`);
+        stderr && console.error(`${fullPath}格式化文档出错：${stderr}`);
+      });
     });
   } catch (error) {
     console.log(error);
