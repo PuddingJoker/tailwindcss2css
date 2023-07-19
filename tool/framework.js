@@ -196,7 +196,7 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
       if (VueOrJsx === "vue") VueConvert(fullPath, way);
     });
 
-    exec(`prettier --write '${dir}/**/*.{tsx,css,ts,vue}'`, (error, stdout, stderr) => {
+    exec(`prettier --write '${dir}/**/*.{tsx,jsx,css,ts,js,vue}'`, (error, stdout, stderr) => {
       if (error) {
         console.log(`\n~~~~~~~~~~~~~~~~  remember to run "npm install -g prettier" first ~~~~~~~~~~~~~~~~\n `);
         console.error(`format file fail: ${error}`);
