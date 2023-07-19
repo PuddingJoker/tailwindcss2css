@@ -63,7 +63,7 @@ const JsxConvert = (path = "", way) => {
       const codeToInsert = `
                 import styles from "./${fileName}.module.css";
             `;
-      content = content.replace(importReg, `$1${codeToInsert}`);
+      content = importReg.test(content) ? content.replace(importReg, `$1${codeToInsert}`) : codeToInsert + content;
       fs.writeFileSync(path, content, "utf8");
       console.log(generatePath, "    generate style file success!");
     }
@@ -73,7 +73,7 @@ const JsxConvert = (path = "", way) => {
                 import { css } from "@linaria/core";
                 ${css}
             `;
-      content = content.replace(importReg, `$1${codeToInsert}`);
+      content = importReg.test(content) ? content.replace(importReg, `$1${codeToInsert}`) : codeToInsert + content;
       fs.writeFileSync(path, content, "utf8");
       console.log(path, "     change into cssinjs success!");
     }
