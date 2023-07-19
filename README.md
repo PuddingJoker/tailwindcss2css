@@ -2,6 +2,8 @@
 
 Convert tailwindcss class to css or to inline-style or to linaria cssinjs
 
+#### try it online! [PuddingJoker/tailwindcss2css](https://puddingjoker.github.io/tailwindcss2cssonline/)
+
 <p align="center">
  <b>  run with native classname  </b>
 </p>
