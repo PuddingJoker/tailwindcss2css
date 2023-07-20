@@ -4,7 +4,7 @@ Give a star ⭐ if this project helped you!
 
 ---
 
-**[Link to the project](https://puddingjoker.github.io/tailwindcss2cssonline/)**
+**[Try It Online](https://puddingjoker.github.io/tailwindcss2cssonline/)**
 
 ---
 
