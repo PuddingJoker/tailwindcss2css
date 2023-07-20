@@ -12,12 +12,14 @@ function updateCSSProperty(str) {
     let property = properties[i].trim();
     const [key, value] = property.split(':').map(item => item.trim());
 
-    const updatedKey = key
-      .split('-')
-      .map((part, index) => (index > 0 ? part.charAt(0).toUpperCase() + part.slice(1) : part))
-      .join('');
+    if (key) {
+      const updatedKey = key
+        .split('-')
+        .map((part, index) => (index > 0 ? part.charAt(0).toUpperCase() + part.slice(1) : part))
+        .join('');
 
-    properties[i] = `${updatedKey}: ${value}`;
+      properties[i] = `${updatedKey}: ${value}`
+    }
   }
 
   return properties.join('; ');
@@ -53,7 +55,7 @@ const JsxConvert = (path = "", way) => {
 
       if (way === "inline") {
         let style = updateCSSProperty(tailwindToCss(b))
-      
+
         style = `style={{${style}}}`
           .replace(/(\w+):\s*([^;]+)/g, '$1: "$2"')
           .replace(/;/g, ",");
@@ -66,7 +68,7 @@ const JsxConvert = (path = "", way) => {
     });
 
     if (way === "inline") {
-      fs.writeFileSync(path, content, "utf8");
+      // fs.writeFileSync(path, content, "utf8");
       console.log(path, "     change to inline style success!");
     }
     if (way === "native") {
