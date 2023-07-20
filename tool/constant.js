@@ -26,6 +26,7 @@ const tailwindClass = {
     leading: "line-height",
     rounded: "border-radius",
     opacity: "opacity",
+    font:"font-weight"
 };
 
 const reactiveClass = [

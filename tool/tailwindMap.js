@@ -1,6 +1,7 @@
 const tailwindMap = {
     // custom add
     "mx-auto": "margin-left:auto;\nmargin-right:auto;",
+    "text-white": "color: rgba(255,255,255, 1);",
 
     // from https://tailwindcomponents.com/cheatsheet/
     "aspect-auto": "aspect-ratio: auto;",
