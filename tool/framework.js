@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const { exec } = require('child_process');
 const { tailwindToCss, originClasses } = require("./index");
 
@@ -188,15 +189,15 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
         return run(filePath, VueOrJsx, way);
       }
       // filter
-      const ends = ["vue", "jsx", "tsx"];
-      if (!ends.includes(file.split(".")[1])) return;
+      const ends = [".vue", ".jsx", ".tsx"];
+      if (!ends.includes(path.extname(file))) return;
 
       const fullPath = `${dir}/${file}`;
       if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
       if (VueOrJsx === "vue") VueConvert(fullPath, way);
     });
 
-    exec(`prettier --write '${dir}/**/*.{tsx,jsx,css,ts,js,vue}'`, (error, stdout, stderr) => {
+    exec(`prettier --write '${dir}/**/*.{tsx,jsx,css,vue}'`, (error, stdout, stderr) => {
       if (error) {
         console.log(`\n~~~~~~~~~~~~~~~~  remember to run "npm install -g prettier" first ~~~~~~~~~~~~~~~~\n `);
         console.error(`format file fail: ${error}`);
