@@ -6,8 +6,6 @@ const tailwindMap = {
     "aspect-auto": "aspect-ratio: auto;",
     "aspect-square": "aspect-ratio: 1 / 1;",
     "aspect-video": "aspect-ratio: 16 / 9;",
-    "container": "none;",
-    "": "ring-offset-pink-900;",
     "columns-1": "columns: 1;",
     "columns-2": "columns: 2;",
     "columns-3": "columns: 3;",
