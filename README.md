@@ -1,8 +1,15 @@
-# TailwindCss To Css、TailwindCss To CssInJs、TailwindCss To InlineCss, One-Click Conversion In Vue or React Framework
+## Convert tailwindcss to CSS, convert tailwindcss to inline CSS, convert tailwindcss to native CSS, and enable one-click migration in Vue or React frameworks
 
-Convert tailwindcss class to css or to inline-style or to linaria cssinjs
+Give a star ⭐ if this project helped you!
 
-#### try it online! [PuddingJoker/tailwindcss2css](https://puddingjoker.github.io/tailwindcss2cssonline/)
+---
+
+**[Link to the project](https://puddingjoker.github.io/tailwindcss2cssonline/)**
+
+---
+
+### Execution Steps:
+###### Step 1: `npm install -g prettier`
 
 <p align="center">
  <b>  run with native classname  </b>
@@ -39,4 +46,4 @@ Convert tailwindcss class to css or to inline-style or to linaria cssinjs
 [![TailwindTocss](./imgs/native-fw3.png "TailwindTocss")]()
 
 
-#### Give a star if this project helped you~
+
