@@ -12,14 +12,14 @@ const run = require("./tool/framework")
 /**
  *
  * @param {*} dir   entry, must be a absolute path
- * @param {*} VueOrJsx  project framework:  "vue"  "jsx", default "jsx"
+ * @param {*} VueOrReact  project framework:  "vue"  "react", default "react"
  * @param {*} way  compile way: "inline"  "native"  "cssinjs" (only support linaria), default "inline"
  */
 
-run("/Users/pudding/Desktop/tailwind2css/src", "jsx", "inline");
+run("/Users/pudding/前端总学习/tailwind2css/src", "react", "inline");
 // run("/Users/user/Desktop/tailwind2css/src", "vue", "native");
-// run("/Users/user/Desktop/tailwind2css/src", "jsx", "cssinjs");
-// run("/Users/user/Desktop/tailwind2css/src", "jsx", "native");
+// run("/Users/user/Desktop/tailwind2css/src", "react", "cssinjs");
+// run("/Users/user/Desktop/tailwind2css/src", "react", "native");
 // run("/Users/user/Desktop/tailwind2css/src", "vue", "inline");
 
 

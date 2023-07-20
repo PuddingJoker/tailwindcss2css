@@ -192,11 +192,11 @@ const VueConvert = (path = "", way) => {
 /**
  *
  * @param {*} dir   entry,must be a absolute path
- * @param {*} VueOrJsx  project framework:  "vue"  "jsx"
+ * @param {*} VueOrJsx  project framework:  "vue"  "react"
  * @param {*} way  compile way: "inline"  "native"  "cssinjs"
  */
 
-const run = (dir, VueOrJsx = "jsx", way = "inline") => {
+const run = (dir, VueOrReact = "react", way = "inline") => {
   try {
     const files = fs.readdirSync(dir);
     files.map(file => {
@@ -204,15 +204,15 @@ const run = (dir, VueOrJsx = "jsx", way = "inline") => {
       // 判断是否为文件夹
       const stat = fs.lstatSync(filePath);
       if (stat.isDirectory()) {
-        return run(filePath, VueOrJsx, way);
+        return run(filePath, VueOrReact, way);
       }
       // filter
       const ends = [".vue", ".jsx", ".tsx"];
       if (!ends.includes(path.extname(file))) return;
 
       const fullPath = `${dir}/${file}`;
-      if (VueOrJsx === "jsx") JsxConvert(fullPath, way);
-      if (VueOrJsx === "vue") VueConvert(fullPath, way);
+      if (VueOrReact === "react") JsxConvert(fullPath, way);
+      if (VueOrReact === "vue") VueConvert(fullPath, way);
     });
 
     exec(`prettier --write '${dir}/**/*.{tsx,jsx,css,vue}'`, (error, stdout, stderr) => {
