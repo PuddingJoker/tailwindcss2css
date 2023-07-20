@@ -4,8 +4,8 @@ const nativeCss = tailwindToCss(`w-[1180px] hello yourClasses px-[15px] hover:te
 text-[#808082] mx-auto py-[10px] mx-[10px] my-[20px] 
 border-[1px] border-[black]  flex items-center justify-between h-[64px] md:mx-auto`)
 
-// console.log("originClasses: ", Array.from(originClasses));
-// console.log("nativeCss: \n\n", nativeCss);
+console.log("originClasses: ", Array.from(originClasses));
+console.log("nativeCss: \n\n", nativeCss);
 
 
 const run = require("./tool/framework")
@@ -16,9 +16,11 @@ const run = require("./tool/framework")
  * @param {*} way  compile way: "inline"  "native"  "cssinjs" (only support linaria), default "inline"
  */
 
-run("/Users/pudding/前端总学习/tailwind2css/src", "jsx", "inline");
+run("/Users/pudding/Desktop/tailwind2css/src", "jsx", "inline");
 // run("/Users/user/Desktop/tailwind2css/src", "vue", "native");
-// run("/Users/user/Desktop/tailwind2css/src", "jsx", "inline");
+// run("/Users/user/Desktop/tailwind2css/src", "jsx", "cssinjs");
+// run("/Users/user/Desktop/tailwind2css/src", "jsx", "native");
+// run("/Users/user/Desktop/tailwind2css/src", "vue", "inline");
 
 
 
