@@ -1,4 +1,4 @@
-## Convert tailwindcss to CSS, convert tailwindcss to inline CSS, convert tailwindcss to native CSS, and enable one-click migration in Vue or React frameworks
+## Convert tailwindcss to css, convert tailwindcss to inline css, convert tailwindcss to native css, and enable one-click migration in Vue or React frameworks
 
 Give a star ⭐ if this project helped you!
 
