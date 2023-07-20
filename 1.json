@@ -1,7 +1,4 @@
-const tailwindMap = {
-    "mx-auto": "margin-left:auto;\nmargin-right:auto;\n",
-
-    // from https://tailwindcomponents.com/cheatsheet/
+{
     "aspect-auto": "aspect-ratio: auto;\n",
     "aspect-square": "aspect-ratio: 1 / 1;\n",
     "aspect-video": "aspect-ratio: 16 / 9;\n",
@@ -3381,7 +3378,3 @@ const tailwindMap = {
     "table-auto": "table-layout: auto;\n",
     "table-fixed": "table-layout: fixed;\n"
 }
-
-
-module.exports = tailwindMap
-
