@@ -16,7 +16,7 @@ const run = require("./tool/framework")
  * @param {*} way  compile way: "inline"  "native"  "cssinjs" (only support linaria), default "inline"
  */
 
-run("/Users/pudding/Desktop/tailwind2css/src", "react", "inline");
+run("/Users/pudding/Desktop/tailwind2css/src", "react", "native");
 // run("/Users/user/Desktop/tailwind2css/src", "vue", "native");
 // run("/Users/user/Desktop/tailwind2css/src", "react", "cssinjs");
 // run("/Users/user/Desktop/tailwind2css/src", "react", "native");

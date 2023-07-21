@@ -20,7 +20,7 @@ Give a star ⭐ if this project helped you!
 
 
 <p align="center">
- <b>  run linaria cssinjs transform in react/vue framework  </b>
+ <b>  run linaria cssinjs transform in react framework  </b>
 </p>
 
 [![TailwindTocss](./imgs/cssinjs1.png "TailwindTocss")]()
