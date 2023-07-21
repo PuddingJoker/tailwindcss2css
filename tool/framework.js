@@ -68,7 +68,7 @@ const JsxConvert = (path = "", way) => {
     });
 
     if (way === "inline") {
-      // fs.writeFileSync(path, content, "utf8");
+      fs.writeFileSync(path, content, "utf8");
       console.log(path, "     change to inline style success!");
     }
     if (way === "native") {
