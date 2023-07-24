@@ -6,7 +6,7 @@ const tailwindMap = {
 
     // from https://tailwindcomponents.com/cheatsheet/
     "aspect-auto": "aspect-ratio: auto;",
-    "container": "width: 100%",
+    "container": "width: 100%;",
     "aspect-square": "aspect-ratio: 1 / 1;",
     "aspect-video": "aspect-ratio: 16 / 9;",
     "columns-1": "columns: 1;",
